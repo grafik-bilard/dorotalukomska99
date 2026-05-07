@@ -296,20 +296,23 @@ if ('ontouchstart' in window) {
     // =========================
     // 📅 AKTYWNE REZERWACJE
     // =========================
-    cal.addEvent({
-      id: d.id,
-      title: e.nazwa,
-      start: e.start.toDate(),
-      end: e.end.toDate(),
-      backgroundColor: color,
-      borderColor: color,
-      textColor: "#fff",
-      extendedProps: {
-        stol: e.stol,
-        createdBy: e.createdBy || ""
-      }
-    });
-  }
+    if (!cal.getEventById(d.id)) {
+
+  cal.addEvent({
+    id: d.id,
+    title: e.nazwa,
+    start: e.start.toDate(),
+    end: e.end.toDate(),
+    backgroundColor: color,
+    borderColor: color,
+    textColor: "#fff",
+    extendedProps: {
+      stol: e.stol,
+      createdBy: e.createdBy || ""
+    }
+  });
+
+}
 });
 
 }
