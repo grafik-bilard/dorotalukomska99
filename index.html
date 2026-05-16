@@ -281,17 +281,12 @@ if ('ontouchstart' in window) {
     // 📦 ARCHIWUM
     // =========================
     if (archiveDate <= now) {
-      // kopiujemy do archiwum
-      await addDoc(collection(db, "rezerwacje_archiwum"), {
-        ...e,
-        archivedAt: Timestamp.fromDate(now)
-      });
 
-      // usuwamy z aktywnych
-      await deleteDoc(doc(db, "rezerwacje", d.id));
+  // usuwamy stare rezerwacje permanentnie
+  await deleteDoc(doc(db, "rezerwacje", d.id));
 
-      continue; // ⬅️ bardzo ważne
-    }
+  continue;
+}
 
     // =========================
     // 📅 AKTYWNE REZERWACJE
